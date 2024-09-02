@@ -3,8 +3,8 @@
 </script>
 
 <main>
-  <h1 class="title">This is Frontend Server.</h1>
-  <div>hello {name}</div>
+  <h1 class="title">This is  My Frontend Server.</h1>
+  <div>hello {name},{name}</div>
   <!-- 変数が描画される -->
   <div />
   <a href="/getdata">get data page</a>
@@ -14,6 +14,6 @@
   /* class=testとなっている箇所に適用されるスタイル */
   .title {
     color: snow;
-    background-color: teal;
+    background-color: blue;
   }
 </style>

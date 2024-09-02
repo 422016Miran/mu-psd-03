@@ -10,7 +10,7 @@ CORS(app)
 @app.route("/")
 def index():
     # 戻り値がそのままWebサイトに表示される。
-    return jsonify({"result":"This is Backend API Server."})
+    return jsonify({"result":"This is My Backend API Server."})
 
 
 # データ検索用関数
