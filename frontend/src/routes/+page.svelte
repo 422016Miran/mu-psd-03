@@ -17,6 +17,13 @@
     const time = now.toLocaleTimeString();
     return `${date} ${time}`;
   }
+  
+  async function submit() {
+     // APIにアクセスする定型文
+     const response = await fetch("http://localhost:5000/calc/" + income + "/" + rooms + "/" + age);
+    // 表示用変数にデータを入れると、画面も再描画される。
+    data = await response.json();
+  }
 
   // 初期化時に日付と時間を設定
   let currentDateTime = getCurrentDateTime();
@@ -44,7 +51,7 @@
       {/each}
     </select>
     <br>
-    <button type="submit">検索</button>
+    <button on:click={submit}>検索</button>
   </form>
   <p>検索した地名: {selected ? selected.text : '[waiting...]'}</p>
   ------------------------------------------------------------------
