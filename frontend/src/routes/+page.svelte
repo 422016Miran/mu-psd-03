@@ -1,4 +1,5 @@
 <script>
+  import { goto } from '$app/navigation';
   let name = "Report"; // 変数を宣言する。
   let questions = [
     { id: 1, text: '札幌'},
@@ -18,11 +19,10 @@
     return `${date} ${time}`;
   }
   
-  async function submit() {
-     // APIにアクセスする定型文
-     const response = await fetch("http://localhost:5000/calc/" + income + "/" + rooms + "/" + age);
-    // 表示用変数にデータを入れると、画面も再描画される。
-    data = await response.json();
+  // 天気予報のページに移動する関数
+  function navigateToSearch(event) {
+    event.preventDefault(); // Prevent the default form submission
+    goto('/search');  // /searchページに遷移
   }
 
   // 初期化時に日付と時間を設定
@@ -35,14 +35,14 @@
 </script>
 
 <main>
-  <h1 class="title">Welcome to Weather Report!</h1>
+  <h1 class="title">ウェザーリポート</h1>
   <div>Weather {name}</div>
   <!-- 変数が描画される -->
   <div />
-  <a href="/getdata">get data page</a>
+  <!--<a href="/getdata">get data page</a>-->
 
   <p>地名を選んでください</p>
-  <form on:submit>
+  <form on:submit={navigateToSearch}>
     <select bind:value={selected}>
       {#each questions as question}
         <option value={question}>
@@ -51,7 +51,7 @@
       {/each}
     </select>
     <br>
-    <button on:click={submit}>検索</button>
+    <button type="weather">検索</button>
   </form>
   <p>検索した地名: {selected ? selected.text : '[waiting...]'}</p>
   ------------------------------------------------------------------
