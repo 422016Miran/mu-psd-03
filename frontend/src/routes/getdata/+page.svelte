@@ -15,7 +15,7 @@
 </script>
 
 <main>
-  <h1 class="title">This is sample page. {title}</h1>
+  <h1 class="title">This is weather report. {title}</h1>
   <table>
   <tr>
 	<td>Income</td>
@@ -40,7 +40,7 @@
   </tr>
   </table>
   <hr />
-  <a href="/">Top</a>
+  <a href="/">戻る</a>
 </main>
 
 <!-- 画面の装飾をする -->
