@@ -7,7 +7,7 @@ plt.rcParams['font.family'] = 'MS Gothic'
 plt.rcParams['font.size'] = 12
 
 # データの読み込み
-df = pd.read_csv("C:\\source\\mu-psd-03\\AI\\weather(1).csv", encoding='shift_jis')
+df = pd.read_csv("C:\\source\\mu-psd-03\\AI\\weather.csv", encoding='shift_jis')
 df["date"]=pd.to_datetime(df["date"])
 df = pd.get_dummies(df)
 
