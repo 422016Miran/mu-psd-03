@@ -13,11 +13,11 @@
 
   // 日付と時間を取得する関数
   function getCurrentDateTime() {
-    const now = new Date();
-    const date = now.toLocaleDateString();
-    const time = now.toLocaleTimeString();
-    return `${date} ${time}`;
-  }
+  const now = new Date();
+  const date = now.toLocaleDateString();
+  const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  return `${date} ${time}`;
+} 
   
   // 天気予報のページに移動する関数
   function navigateToSearch(event) {
@@ -36,12 +36,16 @@
 
 <main>
   <h1 class="title">ウェザーリポート</h1>
+  <div class="date">現在の日時: {currentDateTime}</div>
   <div>Weather {name}</div>
   <!-- 変数が描画される -->
   <div />
+  <div>
+    <img src="japanmap.png" alt="日本地図"/>
+  </div>
   <!--<a href="/getdata">get data page</a>-->
 
-  <p>地名を選んでください</p>
+  <p class="call">地名を選んでください</p>
   <form on:submit={navigateToSearch}>
     <select bind:value={selected}>
       {#each questions as question}
@@ -51,19 +55,33 @@
       {/each}
     </select>
     <br>
-    <button type="weather">検索</button>
+    <button type="search">検索</button>
   </form>
-  <p>検索した地名: {selected ? selected.text : '[waiting...]'}</p>
-  ------------------------------------------------------------------
+  <p class="dotted-line">
+    検索した地名: {selected ? selected.text : '[waiting...]'}
+  </p>
+
   <h3>【使い方】</h3>
-  <p>現在の日時: {currentDateTime}</p>
+    ・ボックスに地名が選択肢として用意されているので、そこから希望の地名を選んでくだ
+    さい。
 </main>
 
 <style>
   /* class=testとなっている箇所に適用されるスタイル */
   .title {
+    font-size: 50px;
     color: snow;
     background-color: blue;
+    text-align: center;
+  }
+  .date {
+    text-align: right;
+  }
+  .call {
+    text-align: center;
+  }
+  form {
+    text-align: center;
   }
   select {
     text-align: center;
@@ -73,5 +91,9 @@
   button {
     width: 85px;
     max-width: 100%;
+  }
+  .dotted-line {
+    border-bottom: 2px dotted black;
+    padding-bottom: 10px;
   }
 </style>
