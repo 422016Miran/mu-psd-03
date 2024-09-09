@@ -1,28 +1,32 @@
 <script>
-  import { goto } from '$app/navigation';
+  import { goto } from "$app/navigation";
+  import { selected } from './store.js';
   let name = "Report"; // 変数を宣言する。
   let questions = [
-    { id: 1, text: '札幌'},
-    { id: 2, text: '東京'},
-    { id: 3, text: '名古屋'},
-    { id: 4, text: '大阪'},
-    { id: 5, text: '福岡'},
-    { id: 6, text: '那覇'}
+    { id: 1, text: "札幌" },
+    { id: 2, text: "東京" },
+    { id: 3, text: "名古屋" },
+    { id: 4, text: "大阪" },
+    { id: 5, text: "福岡" },
+    { id: 6, text: "那覇" },
   ];
-  let selected;
+  //let selected;
 
   // 日付と時間を取得する関数
   function getCurrentDateTime() {
-  const now = new Date();
-  const date = now.toLocaleDateString();
-  const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-  return `${date} ${time}`;
-} 
-  
+    const now = new Date();
+    const date = now.toLocaleDateString();
+    const time = now.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    return `${date} ${time}`;
+  }
+
   // 天気予報のページに移動する関数
   function navigateToSearch(event) {
     event.preventDefault(); // Prevent the default form submission
-    goto('/search');  // /searchページに遷移
+    goto("/search"); // /searchページに遷移
   }
 
   // 初期化時に日付と時間を設定
@@ -41,44 +45,61 @@
   <!-- 変数が描画される -->
   <div />
   <div>
-    <img src="japanmap.png" alt="日本地図"/>
+    <img src="/japanmap.jpg" alt="日本地図" />
   </div>
   <!--<a href="/getdata">get data page</a>-->
 
   <p class="call">地名を選んでください</p>
   <form on:submit={navigateToSearch}>
-    <select bind:value={selected}>
+    <select bind:value={$selected}>
+      <option value="" disabled selected>選択してください</option>
       {#each questions as question}
         <option value={question}>
           {question.text}
         </option>
       {/each}
     </select>
-    <br>
+    <br />
     <button type="search">検索</button>
   </form>
   <p class="dotted-line">
-    検索した地名: {selected ? selected.text : '[waiting...]'}
+    検索した地名: {$selected && $selected.text ? $selected.text : ""}
   </p>
 
   <h3>【使い方】</h3>
-    ・ボックスに地名が選択肢として用意されているので、そこから希望の地名を選んでくだ
-    さい。
+  <p>
+    ウェザーリポートをご覧いただきありがとうございます。以下にこのWebアプリを使用する上での説明が書いてあります。<br
+    />
+    ・ボックスに地名が選択肢として用意されているので、希望の地名を選んでください。<br
+    />
+    ・検索ボタンを押すと、天気予報のページに移動します。
+  </p>
 </main>
 
 <style>
   /* class=testとなっている箇所に適用されるスタイル */
+  main {
+    background-color: antiquewhite;
+  }
   .title {
-    font-size: 50px;
+    font-size: 70px;
     color: snow;
     background-color: blue;
     text-align: center;
+    background-image: url("./background.jpg");
+    background-size: cover;
   }
   .date {
     text-align: right;
+    margin-right: 30px;
+  }
+  img {
+    width: auto;
+    height: auto;
   }
   .call {
     text-align: center;
+    font-size: larger;
   }
   form {
     text-align: center;

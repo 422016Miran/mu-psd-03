@@ -1,5 +1,6 @@
 <!-- Frontendでの処理ロジックを記述 -->
 <script>
+  import {selected} from '../store.js';
   let title = "Data Get";
   let income;
   let rooms; 
@@ -15,7 +16,7 @@
 </script>
 
 <main>
-  <h1 class="title">This is weather report. {title}</h1>
+  <h1 class="title">{$selected ? $selected.text : '[waiting...]'}の天気予報のデータ</h1>
   <table>
   <tr>
 	<td>Income</td>
@@ -48,6 +49,7 @@
   /* class=titleとなっている箇所を装飾する */
   .title {
     color: snow;
-    background-color: teal;
+    background-color: rgb(5, 227, 220);
+    text-align: center;
   }
 </style>
