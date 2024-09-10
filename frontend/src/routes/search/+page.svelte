@@ -16,21 +16,23 @@
 </script>
 
 <main>
-  <h1 class="title">{$selected ? $selected.text : '[waiting...]'}の天気予報のデータ</h1>
-  <table>
-  <tr>
-	<td>Income</td>
-  	<td><input bind:value={income} /></td>
-  </tr>
-  <tr>
-  	<td>Rooms</td>
-	<td><input bind:value={rooms} /></td>
-  </tr>
-  <tr>
-  	<td>House Age</td>
-	<td><input bind:value={age} /></td>
-  </tr>
-  </table>
+  <h1 class="title">{$selected ? $selected.text : '[waiting...]'}の天気予報</h1>
+  <div class="parameter">
+    <table>
+      <tr>
+	      <td>天気</td>
+  	    <td><input bind:value={income} /></td>
+      </tr>
+      <tr>
+  	    <td>気温</td>
+	      <td><input bind:value={rooms} /></td>
+      </tr>
+      <tr>
+  	    <td>降水量</td>
+	      <td><input bind:value={age} /></td>
+      </tr>
+    </table>
+  </div>
   <button on:click={findData}>Get Data.</button>
   <div />
   <hr />
@@ -47,9 +49,27 @@
 <!-- 画面の装飾をする -->
 <style>
   /* class=titleとなっている箇所を装飾する */
+  main {
+    background-color: antiquewhite;
+  }
   .title {
     color: snow;
     background-color: rgb(5, 227, 220);
     text-align: center;
+    font-size: 70px;
+    background-image: url("./background2.jpg");
+    background-size: cover;
+    margin: 0%;
+    margin-bottom: 20px;
+  }
+  table {
+    text-align: center;
+    display: block;
+    margin: auto;
+  }
+  .parameter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 </style>
