@@ -31,6 +31,14 @@
   	    <td>降水量</td>
 	      <td><input bind:value={age} /></td>
       </tr>
+      <tr>
+  	    <td>湿度</td>
+	      <td><input bind:value={age} /></td>
+      </tr>
+      <tr>
+  	    <td>洗濯指数</td>
+	      <td><input bind:value={age} /></td>
+      </tr>
     </table>
   </div>
   <button on:click={findData}>Get Data.</button>
@@ -63,6 +71,7 @@
     margin-bottom: 20px;
   }
   table {
+    font-size: 20px;
     text-align: center;
     display: block;
     margin: auto;
